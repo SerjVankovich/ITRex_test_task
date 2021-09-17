@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {connect} from 'react-redux'
+import Table from './components/Table/Table'
+import Inputs from './components/Inputs/Inputs'
+import PageChanger from './components/PageChanger/PageChanger'
+import InfoCard from './components/InfoCard/InfoCard'
+import fetchPeople from './API'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App({people, fetchPeople, chosenPerson}) {
+    if (people.isInitState) {
+        fetchPeople()
+    }
+    return (
+        <div>
+            <Inputs/>
+            <Table people={people} fetchPeople={fetchPeople}/>
+            <PageChanger/>
+            {chosenPerson.Id ? <InfoCard/> : undefined}
+        </div>
+    );
 }
 
-export default App;
+const AppConnected = connect(
+    state => ({
+        people: state.people,
+        chosenPerson: state.chosenPerson,
+    }),
+    dispatch => ({
+        fetchPeople() {
+            dispatch(fetchPeople())
+        },
+    })
+)(App);
+
+
+export default AppConnected;

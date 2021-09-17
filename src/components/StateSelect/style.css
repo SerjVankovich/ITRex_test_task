@@ -1,0 +1,28 @@
+.formSel select {
+    margin-top: 1%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    padding: 7px;
+    border-radius: 10px;
+    border: none;
+    background: #1b85e7;
+    color: white;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+    width: 15em;
+
+}
+
+.formSel {
+    margin-top: 1%;
+    flex-grow: 1;
+}
+
+.option {
+    background: #ffffff;
+    color: black;
+}
